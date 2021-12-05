@@ -18,6 +18,7 @@ if not os.path.exists(".env"):
         f.close()
 
         print("Great, it works! Back to our regularly scheduled program!")
+        print("REMEMBER: **NEVER** share your .env file!")
     else:
         raise Exception("The key looks to be invalid. :(")
 load_dotenv()
