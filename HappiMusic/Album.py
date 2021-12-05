@@ -1,3 +1,6 @@
+"""
+The Album object for the HappyMusic API wrapper.
+"""
 from .Artist import create_artist
 from .KeyHelper import key
 import requests

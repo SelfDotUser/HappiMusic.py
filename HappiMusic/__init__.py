@@ -4,7 +4,7 @@ A Happi Music API Wrapper.
 Nothing complicated.
 """
 
-__title__ = "Happi"
+__title__ = "HappiMusic"
 __author__ = "SelfDotUser"
 __version__ = "1.0.0"
 

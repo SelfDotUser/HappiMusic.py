@@ -1,11 +1,8 @@
 """
-This is the Track object for the Happi Music API.
-
-In this class, we can create these other objects:
-- Artist object
-- Album object
+The Track object for the Happi Music API wrapper.
 """
 from .Lyrics import get_lyrics
+from KeyHelper import key
 import requests
 
 

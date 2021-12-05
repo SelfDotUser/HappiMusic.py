@@ -1,3 +1,6 @@
+"""
+The Lyrics object for the Happi Music API wrapper.
+"""
 from .KeyHelper import key
 import requests
 

@@ -1,9 +1,7 @@
 """
-This is the Track object for the Happi Music API.
+The Search module for the Happi Music API wrapper.
 
-In this class, we can create these other objects:
-- Artist object
-- Album object
+This helps users conveniently search the Happi Music API.
 """
 from .Album import create_album
 from .Artist import create_artist

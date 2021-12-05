@@ -1,3 +1,8 @@
+"""
+The KeyHelper for the Happy Music API wrapper.
+
+This helps the user get their API key ready to use with the wrapper.
+"""
 import os
 from dotenv import load_dotenv
 import requests
