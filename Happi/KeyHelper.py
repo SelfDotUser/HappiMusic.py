@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import requests
 
 if not os.path.exists(".env"):
-    print("The '.env' file was not found. Let's fix that!")
+    print("The '.env' file was not found. Let's fix that! You can get one from https://happi.dev/")
 
     potential_key = input('Paste your API key here: ')
 
