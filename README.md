@@ -7,6 +7,7 @@ The HappyMusic wrapper comes with a KeyHelper that will help you set up your API
 wrapper.<br>
 Please get an API key from the [Happi website](https://happi.dev) and follow the instructions given to you in the 
 terminal.
+
 ---
 # Examples
 ### Searching for a song
