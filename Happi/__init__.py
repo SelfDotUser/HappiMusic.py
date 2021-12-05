@@ -6,7 +6,7 @@ Nothing complicated.
 
 __title__ = "Happi"
 __author__ = "SelfDotUser"
-__version__ = "1.0.0 BETA"
+__version__ = "1.0.0"
 
 from .Album import *
 from .Artist import *
