@@ -1,11 +1,8 @@
 """
 This is the Artist object for the Happi Music API.
 """
+from .KeyHelper import key
 import requests
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
 
 
 class Artist:
@@ -26,7 +23,7 @@ class Artist:
 def create_artist(artist_id: int):
     response = requests.get(f"https://api.happi.dev/v1/music/artists/{artist_id}",
                             params={"id_artist": artist_id},
-                            headers={"x-happi-key": os.getenv("API_KEY")})
+                            headers={"x-happi-key": key})
     artist_data = response.json()['result']
     data = {
         "name": artist_data['artist'],

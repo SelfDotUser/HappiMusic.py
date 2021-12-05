@@ -1,9 +1,6 @@
-import requests
-from dotenv import load_dotenv
-import os
 from .Artist import create_artist
-
-load_dotenv()
+from .KeyHelper import key
+import requests
 
 
 class Album:
@@ -27,7 +24,7 @@ class Album:
 def create_album(artist_id: int, album_id: int):
     response = requests.get(f"https://api.happi.dev/v1/music/artists/{artist_id}/albums/{album_id}",
                             params={"id_artist": artist_id, "id_album": album_id},
-                            headers={"x-happi-key": os.getenv("API_KEY")})
+                            headers={"x-happi-key": key})
 
     album_data = response.json()['result']
 

@@ -9,11 +9,8 @@ from .Album import create_album
 from .Artist import create_artist
 from .Track import create_track
 from .Lyrics import get_lyrics
+from .KeyHelper import key
 import requests
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
 
 
 class SearchedTrack:
@@ -53,7 +50,7 @@ class SearchedArtist:
 def search_artist(q: str, limit=5, lyrics=False):
     response = requests.get(f"https://api.happi.dev/v1/music",
                             params={"q": q, "limit": limit, "lyrics": lyrics, type: "artist"},
-                            headers={"x-happi-key": os.getenv("API_KEY")})
+                            headers={"x-happi-key": key})
     artist_data = response.json()['result']
 
     list_of_artists = []
@@ -74,7 +71,7 @@ def search_artist(q: str, limit=5, lyrics=False):
 def search_track(q: str, limit=5, lyrics=False):
     response = requests.get(f"https://api.happi.dev/v1/music",
                             params={"q": q, "limit": limit, "lyrics": lyrics, type: "track"},
-                            headers={"x-happi-key": os.getenv("API_KEY")})
+                            headers={"x-happi-key": key})
     track_data = response.json()['result']
 
     list_of_results = []

@@ -1,12 +1,9 @@
-import os
+from .KeyHelper import key
 import requests
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 def get_lyrics(link):
     response = requests.get(link,
-                            headers={"x-happi-key": os.getenv("API_KEY")})
+                            headers={"x-happi-key": key})
 
     return response.json()['result']['lyrics']

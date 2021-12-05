@@ -5,12 +5,8 @@ In this class, we can create these other objects:
 - Artist object
 - Album object
 """
-import requests
-from dotenv import load_dotenv
-import os
 from .Lyrics import get_lyrics
-
-load_dotenv()
+import requests
 
 
 class Track:
@@ -31,7 +27,7 @@ class Track:
 def create_track(artist_id: int, album_id: int, track_id: int):
     response = requests.get(f"https://api.happi.dev/v1/music/artists/{artist_id}/albums/{album_id}/tracks/{track_id}",
                             params={"id_artist": artist_id, "id_album": album_id, "id_track": track_id},
-                            headers={"x-happi-key": os.getenv("API_KEY")})
+                            headers={"x-happi-key": key})
     track_data = response.json()['result']
 
     data = {
