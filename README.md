@@ -1,4 +1,4 @@
-<img src="./.github/happimusic.py-banner.png">
+<img src="./.github/happimusic.py-banner-new.png">
 
 # HappiMusic.py
 Welcome to the Happi Music API wrapper for Python!
