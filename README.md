@@ -1,14 +1,16 @@
+<img src="./.github/happimusic.py-banner.png">
+
 # HappiMusic.py
 Welcome to the Happi Music API wrapper for Python!
 
----
+
 # Authentication
 The HappyMusic wrapper comes with a KeyHelper that will help you set up your API key when you first try to use the 
 wrapper.<br>
 Please get an API key from the [Happi website](https://happi.dev) and follow the instructions given to you in the 
 terminal.
 
----
+
 # Examples
 ### Searching for a song
 ```python
@@ -46,18 +48,18 @@ song = HappiMusic.create_track(116148, 3220879, 19656780)
 # See below for the methods of a Track object
 lyrics = song.lyrics()
 ```
----
+
 # Requirements
 This project uses:
 ```
 requests==2.25.1
 python-dotenv==0.19.0
 ```
----
+
 # API Documentation
 Below you will find the objects available in HappiMusic, as well as their attributes and methods.
 
----
+
 # Track
 ### Attributes
 |Attribute|Type|Description|
@@ -74,7 +76,7 @@ Below you will find the objects available in HappiMusic, as well as their attrib
 |---|---|---|
 |`lyrics()`|String|Returns a thing with the lyrics.|
 
----
+
 # Artist
 ### Attributes
 |Attribute|Type|Description|
@@ -91,7 +93,7 @@ Below you will find the objects available in HappiMusic, as well as their attrib
 |`website`|String|Website link|
 |`spotify`|String|Spotify link.|
 
----
+
 # Album
 ### Attributes
 |Attribute|Type|Description|
@@ -111,7 +113,7 @@ Below you will find the objects available in HappiMusic, as well as their attrib
 |Method|Return Type|Description|
 |---|---|---|
 |`artist()`|Artist|Returns an Artist object of the song.|
----
+
 # Searching
 Searching using HappiMusic is, well, pretty easy.
 <br>
@@ -125,7 +127,7 @@ Some things to know:
 |---|---|---|
 |`search_artist(q, limit=5, lyrics=False)`|List[SearchedArtist]|Entering a string query (q), this returns a list of SearchedArtist for you to use.|
 |`search_track(q, limit=5, lyrics=False)`|List[SearchedTrack]|Entering a string query (q), this returns a list of SearchedTrack for you to use.|
----
+
 # SearchedTrack
 ### Attributes
 |Attribute|Type|Description|
@@ -144,7 +146,7 @@ Some things to know:
 |`album()`|Album|Returns an Album object of the song's album.|
 |`track()`|Track|Returns a Track object of the song.|
 |`lyrics()`|String|Returns a String of the song's lyrics.|
----
+
 # SearchedArtist
 ### Attributes
 |Attribute|Type|Description|
@@ -157,7 +159,7 @@ Some things to know:
 |Method|Return Type|Description|
 |---|---|---|
 |`api()`|Artist|Returns an Artist object of the SearchedArtist. This is to get more information.|
----
+
 # Creating Track, Artist, Album
 There's specific methods that you can use in order to create Track/Artist/Album objects without needing to search first.
 <br>
