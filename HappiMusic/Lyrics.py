@@ -5,7 +5,7 @@ from .KeyHelper import key
 import requests
 
 
-def get_lyrics(link):
+def get_lyrics(link) -> str:
     response = requests.get(link,
                             headers={"x-happi-key": key})
 

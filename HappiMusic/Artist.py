@@ -20,7 +20,7 @@ class Artist:
         self.spotify: str = kwargs.pop('spotify', None)
 
 
-def create_artist(artist_id: int):
+def create_artist(artist_id: int) -> Artist:
     response = requests.get(f"https://api.happi.dev/v1/music/artists/{artist_id}",
                             params={"id_artist": artist_id},
                             headers={"x-happi-key": key})

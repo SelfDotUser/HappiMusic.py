@@ -3,9 +3,9 @@ The Search module for the Happi Music API wrapper.
 
 This helps users conveniently search the Happi Music API.
 """
-from .Album import create_album
-from .Artist import create_artist
-from .Track import create_track
+from .Album import Album, create_album
+from .Artist import Artist, create_artist
+from .Track import Track, create_track
 from .Lyrics import get_lyrics
 from .KeyHelper import key
 import requests
@@ -13,7 +13,7 @@ import requests
 
 class SearchedTrack:
     def __init__(self, **kwargs):
-        self.kwargs = kwargs
+        self._kwargs = kwargs
         self.name: str = kwargs.pop("name", None)
         self.id: int = kwargs.pop("id", None)
         self.hasLyrics: bool = kwargs.pop("hasLyrics", None)
@@ -21,31 +21,31 @@ class SearchedTrack:
         self.lang: str = kwargs.pop("lang", None)
         self.cover: str = kwargs.pop("cover", None)
 
-    def artist(self):
-        return create_artist(self.kwargs["artist_id"])
+    def artist(self) -> Artist:
+        return create_artist(self._kwargs["artist_id"])
 
-    def album(self):
-        return create_album(self.kwargs["artist_id"], self.kwargs['album_id'])
+    def album(self) -> Album:
+        return create_album(self._kwargs["artist_id"], self._kwargs['album_id'])
 
-    def track(self):
-        return create_track(self.kwargs["artist_id"], self.kwargs['album_id'], self.id)
+    def track(self) -> Track:
+        return create_track(self._kwargs["artist_id"], self._kwargs['album_id'], self.id)
 
-    def lyrics(self):
-        return get_lyrics(self.kwargs['lyrics_api'])
+    def lyrics(self) -> str:
+        return get_lyrics(self._kwargs['lyrics_api'])
 
 
 class SearchedArtist:
     def __init__(self, **kwargs):
-        self.kwargs = kwargs
+        self._kwargs = kwargs
         self.name = kwargs.pop("name", None)
         self.id: int = kwargs.pop('id', None)
         self.cover: str = kwargs.pop('cover', None)
 
-    def api(self):
+    def api(self) -> Artist:
         return create_artist(self.id)
 
 
-def search_artist(q: str, limit=5, lyrics=False):
+def search_artist(q: str, limit=5, lyrics=False) -> list[SearchedArtist]:
     response = requests.get(f"https://api.happi.dev/v1/music",
                             params={"q": q, "limit": limit, "lyrics": lyrics, type: "artist"},
                             headers={"x-happi-key": key})
@@ -66,7 +66,7 @@ def search_artist(q: str, limit=5, lyrics=False):
     return list_of_artists
 
 
-def search_track(q: str, limit=5, lyrics=False):
+def search_track(q: str, limit=5, lyrics=False) -> list[SearchedTrack]:
     response = requests.get(f"https://api.happi.dev/v1/music",
                             params={"q": q, "limit": limit, "lyrics": lyrics, type: "track"},
                             headers={"x-happi-key": key})

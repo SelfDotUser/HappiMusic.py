@@ -1,14 +1,14 @@
 """
 The Album object for the HappyMusic API wrapper.
 """
-from .Artist import create_artist
+from .Artist import Artist, create_artist
 from .KeyHelper import key
 import requests
 
 
 class Album:
     def __init__(self, **kwargs):
-        self.kwargs = kwargs
+        self._kwargs: dict = kwargs
         self.name: str = kwargs.pop('name', None)
         self.id: int = kwargs.pop('id', None)
         self.cover: str = kwargs.pop('cover', None)
@@ -20,11 +20,11 @@ class Album:
         self.label: str = kwargs.pop('label', None)
         self.explicit: bool = kwargs.pop('explicit', None)
 
-    def artist(self):
-        return create_artist(self.kwargs.pop('artist_id', None))
+    def artist(self) -> Artist:
+        return create_artist(self._kwargs.pop('artist_id', None))
 
 
-def create_album(artist_id: int, album_id: int):
+def create_album(artist_id: int, album_id: int) -> Album:
     response = requests.get(f"https://api.happi.dev/v1/music/artists/{artist_id}/albums/{album_id}",
                             params={"id_artist": artist_id, "id_album": album_id},
                             headers={"x-happi-key": key})

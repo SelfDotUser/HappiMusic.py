@@ -8,7 +8,7 @@ import requests
 
 class Track:
     def __init__(self, **kwargs):
-        self.kwargs = kwargs
+        self._kwargs = kwargs
         self.id: int = kwargs.pop('id', None)
         self.name: str = kwargs.pop('name', None)
         self.artist_name: str = kwargs.pop('artist', None)
@@ -17,11 +17,11 @@ class Track:
         self.lang = kwargs.pop('lang', None)
         self.hasLyrics: bool = kwargs.pop('hasLyrics', None)
 
-    def lyrics(self):
-        return get_lyrics(self.kwargs['lyrics_api'])
+    def lyrics(self) -> str:
+        return get_lyrics(self._kwargs['lyrics_api'])
 
 
-def create_track(artist_id: int, album_id: int, track_id: int):
+def create_track(artist_id: int, album_id: int, track_id: int) -> Track:
     response = requests.get(f"https://api.happi.dev/v1/music/artists/{artist_id}/albums/{album_id}/tracks/{track_id}",
                             params={"id_artist": artist_id, "id_album": album_id, "id_track": track_id},
                             headers={"x-happi-key": key})
