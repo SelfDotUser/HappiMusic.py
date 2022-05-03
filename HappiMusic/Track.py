@@ -2,7 +2,7 @@
 The Track object for the Happi Music API wrapper.
 """
 from .Lyrics import get_lyrics
-from KeyHelper import key
+from .KeyHelper import key
 import requests
 
 
