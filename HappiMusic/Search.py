@@ -13,7 +13,7 @@ import requests
 
 class SearchedTrack:
     def __init__(self, **kwargs):
-        self._kwargs = kwargs
+        self._kwargs = dict(kwargs)
         self.name: str = kwargs.pop("name", None)
         self.id: int = kwargs.pop("id", None)
         self.hasLyrics: bool = kwargs.pop("hasLyrics", None)
@@ -33,6 +33,32 @@ class SearchedTrack:
     def lyrics(self) -> str:
         return get_lyrics(self._kwargs['lyrics_api'])
 
+    def __bool__(self):
+        return True if self.id is not None else False
+
+    def __repr__(self):
+        c = "SearchedTrack("
+
+        for k, v in self._kwargs.items():
+            c += f"{k}='{v}', " if type(v) is str else f"{k}={v}, "
+        if len(self._kwargs) != 0:
+            c = c[:-2] + ")"
+        else:
+            c += ")"
+        return c
+
+    def __str__(self):
+        return "" if len(self._kwargs) == 0 else self.name
+
+    def __eq__(self, other):
+        assert type(other) in (Track, SearchedTrack, int), "SearchedTrack.__eq__: Equality only works on int, Track, " \
+                                                           f"or SearchedTrack, not '{type(other)}'."
+
+        if type(other) in (Track, SearchedTrack):
+            return True if other.id == self.id else False
+        else:
+            return True if self.id == other else False
+
 
 class SearchedArtist:
     def __init__(self, **kwargs):
@@ -43,6 +69,32 @@ class SearchedArtist:
 
     def api(self) -> Artist:
         return create_artist(self.id)
+
+    def __bool__(self):
+        return True if self.id is not None else False
+
+    def __repr__(self):
+        c = "SearchedArtist("
+
+        for k, v in self._kwargs.items():
+            c += f"{k}='{v}', " if type(v) is str else f"{k}={v}, "
+        if len(self._kwargs) != 0:
+            c = c[:-2] + ")"
+        else:
+            c += ")"
+        return c
+
+    def __str__(self):
+        return "" if len(self._kwargs) == 0 else self.name
+
+    def __eq__(self, other):
+        assert type(other) in (Track, SearchedArtist, int), f"SearchedArtist.__eq__: Equality only works on int, " \
+                                                            f"Artist, or SearchedArtist, not '{type(other)}'."
+
+        if type(other) in (Track, SearchedArtist):
+            return True if other.id == self.id else False
+        else:
+            return True if self.id == other else False
 
 
 def search_artist(q: str, limit=5, lyrics=False) -> list[SearchedArtist]:

@@ -7,6 +7,7 @@ import requests
 
 class Artist:
     def __init__(self, **kwargs):
+        self._kwargs = dict(kwargs)
         self.name: str = kwargs.pop('name', None)
         self.id: int = kwargs.pop('id', None)
         self.mbid: str = kwargs.pop('mbid', None)
@@ -18,6 +19,32 @@ class Artist:
         self.facebook: str = kwargs.pop('facebook', None)
         self.website: str = kwargs.pop('website', None)
         self.spotify: str = kwargs.pop('spotify', None)
+
+    def __bool__(self):
+        return True if self.id is not None else False
+
+    def __repr__(self):
+        c = "Artist("
+
+        for k, v in self._kwargs.items():
+            c += f"{k}='{v}', " if type(v) is str else f"{k}={v}, "
+        if len(self._kwargs) != 0:
+            c = c[:-2] + ")"
+        else:
+            c += ")"
+        return c
+
+    def __str__(self):
+        return "" if len(self._kwargs) == 0 else self.name
+
+    def __eq__(self, other):
+        assert type(other) in (Artist, int), f"Artist.__eq__: Equality only works on int and Artist, " \
+                                             f"not '{type(other)}'."
+
+        if type(other) is Artist:
+            return True if other.id == self.id else False
+        else:
+            return True if self.id == other else False
 
 
 def create_artist(artist_id: int) -> Artist:
